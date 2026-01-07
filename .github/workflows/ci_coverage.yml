@@ -18,6 +18,9 @@ jobs:
           rustup toolchain install nightly --component llvm-tools-preview
           rustup default nightly
 
+      - name: Add Rust toolchain llvm-tools to PATH
+        run: echo "$(rustc --print sysroot)/lib/rustlib/$(rustc -vV | grep 'host:' | awk '{print $2}')/bin" >> $GITHUB_PATH
+
       - name: Show rustc version
         run: rustc --version
 
