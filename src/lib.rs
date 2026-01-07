@@ -113,4 +113,31 @@ mod tests {
         assert_eq!(q.pop(), Some(300));
         assert_eq!(q.pop(), None);
     }
+
+    #[test]
+    fn test_default() {
+        let mut q: Queue<u32, 3> = Queue::default();
+        assert!(q.push(100));
+        assert!(q.push(200));
+        assert_eq!(q.pop(), Some(100));
+        assert!(q.push(300));
+        assert_eq!(q.pop(), Some(200));
+        assert_eq!(q.pop(), Some(300));
+        assert_eq!(q.pop(), None);
+    }
+
+    #[test]
+    fn test_push_into_full() {
+        let mut q: Queue<u32, 2> = Queue::new();
+        assert!(q.push(1));
+        assert!(q.pop().is_some());
+        assert!(q.push(1));
+        assert!(!q.push(1));
+    }
+
+    #[test]
+    fn test_pop_from_empty() {
+        let mut q: Queue<u32, 5> = Queue::new();
+        assert!(q.pop().is_none());
+    }
 }
