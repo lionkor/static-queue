@@ -1,0 +1,28 @@
+name: CI Coverage
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain (nightly) and llvm-tools
+        run: |
+          rustup toolchain install nightly --component llvm-tools-preview
+          rustup default nightly
+
+      - name: Show rustc version
+        run: rustc --version
+
+      - name: Make scripts executable
+        run: chmod +x scripts/coverage.sh scripts/ci_coverage.sh
+
+      - name: Run CI coverage check
+        run: ./scripts/ci_coverage.sh
