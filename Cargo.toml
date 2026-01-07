@@ -4,7 +4,7 @@ version = "1.0.0"
 edition = "2024"
 author = "Lion Kortlepel <development@kortlepel.com>"
 repository = "https://github.com/lionkor/static-queue"
-description = "A no_std, allocation-free, safe Rust queue implemented as a ring buffer with full test coverage."
+description = "A statically sized, no_std, allocation-free, safe Rust queue implemented as a ring buffer with full test coverage."
 license = "MIT"
 
 [dependencies]
