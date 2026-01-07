@@ -33,7 +33,7 @@ echo "$REPORT_LINE"
 # Example: TOTAL  23  23  100.0%  7  7  100.0%  12  12  100.0%
 COVERAGE_OK=1
 for pct in $(echo "$REPORT_LINE" | grep -oE '[0-9]+\.[0-9]+%'); do
-    if [ "$pct" != "100.0%" ]; then
+    if [ "$pct" != "100.0%" ] && [ "$pct" != "100.00%" ]; then
         COVERAGE_OK=0
     fi
 done

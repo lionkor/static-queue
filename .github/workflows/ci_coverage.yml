@@ -24,8 +24,11 @@ jobs:
       - name: Show rustc version
         run: rustc --version
 
-      - name: Make scripts executable
-        run: chmod +x scripts/coverage.sh scripts/ci_coverage.sh
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Run CI coverage check
-        run: ./scripts/ci_coverage.sh
+      - name: Make scripts executable
+        run: chmod +x scripts/coverage.sh scripts/ci_coverage.sh scripts/ci_llvm_cov.sh
+
+      - name: Run CI coverage check (cargo-llvm-cov)
+        run: ./scripts/ci_llvm_cov.sh
